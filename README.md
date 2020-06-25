@@ -1,5 +1,5 @@
 # manip-img
-Biblioteca de manipulação de imagens desenvolvida em PHP.
+Biblioteca de manipulação de imagens, desenvolvida em PHP.
 
 :bust_in_silhouette: Autor: Josué B. da Silva
 
@@ -9,6 +9,10 @@ Biblioteca de manipulação de imagens desenvolvida em PHP.
 
 
 ## Exemplos de Uso
+
+primeiramente devemos importar a classe para nosso arquivo que irá utilizar a biblioteca.
+
+        <?php require 'classes/ImageResize.php';
 
 - Instanciando um objeto
 
