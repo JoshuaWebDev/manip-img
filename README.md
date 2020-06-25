@@ -12,16 +12,16 @@ Biblioteca de manipulação de imagens desenvolvida em PHP.
 
 - Instanciando um objeto
 
-    $img = new ImageResize("nome_do_arquivo.jpg");
+        $img = new ImageResize("nome_do_arquivo.jpg");
 
 - Definindo largura e altura máxima da nova imagem
 
-    $img->maxSize(300, 300);
+        $img->maxSize(300, 300);
 
 - Obtendo informações da imagem
 
-    echo $img->getInfo();
+        echo $img->getInfo();
 
 - Redimensionando a imagem
 
-    $img->resizeImage();
+        $img->resizeImage();
