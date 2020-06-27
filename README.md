@@ -53,7 +53,7 @@ Antes de chamar este método é necessário instaciar o objeto, passando a local
 
         // o primeiro parâmetro (__DIR__) não deve ser alterado
         // o segundo parâmetro é o local onde está localizada a imagem a ser manipulada
-        $img = new ImageResize(__DIR__, "nome_do_arquivo.jpg");
+        $img = new ImageCrop(__DIR__, "nome_do_arquivo.jpg");
 
 Também é possível armazenar o local da imagem em uma variável e passar a variável como segundo parâmetro do método construtor.
 
