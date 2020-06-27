@@ -11,25 +11,6 @@ require 'ManipImg.php';
 
 class ImageResize extends ManipImg {
 
-  public function __construct($localDir, $img)
-  {
-    if (empty($img)) {
-      throw new Exception("Você deve informar o nome do arquivo/imagem");
-    }
-
-    try {
-      $this->imgPath       = $localDir."/".$img;
-      $tempArrayNameImg    = explode('/', $img);
-      $this->imgFileName   = array_pop($tempArrayNameImg);
-      $this->inicialWidth  = getimagesize($this->imgPath)[0];
-      $this->inicialHeight = getimagesize($this->imgPath)[1];
-      $this->mimeType      = getimagesize($this->imgPath)['mime'];
-      $this->inicialRatio  = $this->inicialWidth / $this->inicialHeight;
-    } catch (Exception $e) {
-      echo $e->getMessage().PHP_EOL;
-    }
-  }
-
   public function setSize($maxW, $maxH)
   {
     if (empty($maxW) || empty($maxH)) {

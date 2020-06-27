@@ -8,18 +8,18 @@
 */
 
 abstract class ManipImg {
-  protect $width;           // largura informada pelo usuário
-  protect $height;          // altura informada pelo usuário
-  protect $imgPath;         // endereço onde encontra-se a imagem a ser redimensionada
-  protect $imgFileName;     // nome do arquivo/imagem a ser redimensionada
-  protect $inicialWidth;    // largura da imagem original
-  protect $inicialHeight;   // altura da imagem original
-  protect $mimeType;        // tipo da imagem
-  protect $finalWidth;      // largura da imagem após ser redimensionada
-  protect $finalHeight;     // altura da imagem após ser redimensionada
-  protect $newImage;        // nova imagem
-  protect $inicialRatio;    // ratio (largura dividida pela altura) da imagem original
-  protect $finalRatio;      // ratio (largura dividida pela altura) da imagem final
+  protected $width;           // largura informada pelo usuário
+  protected $height;          // altura informada pelo usuário
+  protected $imgPath;         // endereço onde encontra-se a imagem a ser redimensionada
+  protected $imgFileName;     // nome do arquivo/imagem a ser redimensionada
+  protected $inicialWidth;    // largura da imagem original
+  protected $inicialHeight;   // altura da imagem original
+  protected $mimeType;        // tipo da imagem
+  protected $finalWidth;      // largura da imagem após ser redimensionada
+  protected $finalHeight;     // altura da imagem após ser redimensionada
+  protected $newImage;        // nova imagem
+  protected $inicialRatio;    // ratio (largura dividida pela altura) da imagem original
+  protected $finalRatio;      // ratio (largura dividida pela altura) da imagem final
 
   public function __construct($localDir, $img)
   {
