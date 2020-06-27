@@ -7,9 +7,9 @@
 * Versão 0.0.3
 */
 
-require 'ManipImg.php';
-
-class ImageResize extends ManipImg {
+class ImageCrop extends ManipImg {
+  private posX = 0;
+  private posY = 0;
 
   public function __construct($localDir, $img)
   {
@@ -30,22 +30,22 @@ class ImageResize extends ManipImg {
     }
   }
 
-  public function setSize($maxW, $maxH)
+  public function setSize($w, $h)
   {
-    if (empty($maxW) || empty($maxH)) {
-      throw new Exception("Você deve informar a largura e a altura máxima da imagem");
+    if (empty($w) || empty($h)) {
+      throw new Exception("Você deve informar a largura e a altura que a imagem deverá ter após ser cortada");
     }
 
     try {
-      $this->width  = $maxW;
-      $this->height = $maxH;
-      $this->finalRatio = $maxW / $maxH;
+      $this->width  = $w;
+      $this->height = $h;
+      $this->finalRatio = $w / $h;
     } catch (Exception $e) {
       echo $e->getMessage().PHP_EOL;
     }
   }
 
-  public function resizeImage() {
+  public function cropImage() {
     if ($this->finalRatio > $this->inicialRatio) {
       $this->finalWidth  = $this->height * $this->inicialRatio;
       $this->finalHeight = $this->height;
@@ -54,7 +54,17 @@ class ImageResize extends ManipImg {
       $this->finalWidth  = $this->width;
     }
 
-    $this->newImage = imagecreatetruecolor($this->finalWidth, $this->finalHeight);
+    if ($this->finalWidth < $this->width) {
+      $this->finalWidth  = $this->width;
+      $this->finalHeight = $this->width / $this->inicialRatio;
+      $posY = -(($this->finalHeight - $this->height) / 2)
+    } else {
+      $this->finalHeight = $this->height;
+      $this->finalWidth  = $this->height * $this->inicialRatio;
+      $posX = -(($this->finalWidth - $this->width) / 2)
+    }
+
+    $this->newImage = imagecreatetruecolor($this->width, $this->height);
 
     if ($this->mimeType === 'image/jpeg') {
       $tempImg = imagecreatefromjpeg($this->imgPath);
@@ -66,9 +76,9 @@ class ImageResize extends ManipImg {
     }
 
     imagecopyresampled(
-      $this->newImage,        // imagem redimensionada
+      $this->newImage,        // imagem cortada
       $tempImg,               // imagem original temporariamente criada
-      0, 0, 0, 0,             // coordenadas das imagens final e original respectivamente
+      $posX, $posY, 0, 0,     // coordenadas das imagens final e original respectivamente
       $this->finalWidth,      // largura da imagem final
       $this->finalHeight,     // altura da imagem final
       $this->inicialWidth,    // largura da imagem inicial
@@ -80,17 +90,15 @@ class ImageResize extends ManipImg {
       $tmp = explode('.', $this->imgFileName);
       $newImageName = $tmp[0].rand().time().'.jpg';
       imagejpeg($this->newImage, 'resized/'.$newImageName, 100);
-      echo "A imagem redimensionada foi salva em resized/".$newImageName.PHP_EOL;
+      echo "A imagem cortada foi salva em croped/".$newImageName.PHP_EOL;
     } else if ($this->mimeType === 'image/png') {
       $tmp = explode('.', $this->imgFileName);
       $newImageName = $tmp[0].rand().time().'.png';
       imagepng($this->newImage, 'resized/'.$newImageName);
-      echo "A imagem redimensionada foi salva em resized/".$newImageName.PHP_EOL;
+      echo "A imagem cortada foi salva em croped/".$newImageName.PHP_EOL;
     } else {
       echo "O tipe de arquivo da imagem não é suportado".PHP_EOL;
       exit;
     }
-
-    echo "Tamanho da nova imagem: ".intval($this->finalWidth)." x ".intval($this->finalHeight).PHP_EOL;
   }
 }
