@@ -1,12 +1,12 @@
 FROM php:7.4-apache
 
 # Atualiza as bibliotecas do sistema e instala as dependências do PHP
-#RUN apt-get update && apt-get install -y vim curl \
-#    libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
-#    && docker-php-source extract \
-#    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-#    && docker-php-ext-install -j$(nproc) gd \
-#    && docker-php-source delete
+RUN apt-get update && apt-get install -y vim curl \
+   libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
+   && docker-php-source extract \
+   && docker-php-ext-configure gd --with-freetype --with-jpeg \
+   && docker-php-ext-install -j$(nproc) gd \
+   && docker-php-source delete
 
 # Instala o Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
