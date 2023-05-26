@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
 
-echo "Container criado com sucesso!";
+echo "Container criado com sucesso!\n";
 
 ?>

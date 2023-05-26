@@ -82,3 +82,23 @@ Antes de chamar este método é necessário instaciar o objeto, passando a local
 - Obtendo informações da imagem
 
         echo $img->getInfo();
+
+## Usando Docker
+
+Se tiver o Docker instalado em seu ambiente de desenvolvimento, execute o comando a seguir dentro do diretório que possui o arquivo docker-compose.yml:
+
+```bash
+docker-compose up -d
+```
+
+Para acessar o container execute:
+
+```bash
+docker exec -it manip-img bash
+```
+
+Se quiser parar e remover os containers, execute:
+
+```bash
+docker-compose down
+```

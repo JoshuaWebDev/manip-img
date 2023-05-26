@@ -5,4 +5,4 @@ services:
     build: .
     container_name: manip-img
     volumes:
-      - ./src:/usr/src/manip-img
+      - ./:/usr/src/manip-img
